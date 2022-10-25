@@ -6,7 +6,7 @@
 
 
 import streamlit as st
-
+import pandas as pad
 
 
 # In[6]:
