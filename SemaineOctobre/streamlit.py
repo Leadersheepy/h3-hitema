@@ -15,4 +15,4 @@ st.write("Toutefois, l'inverse existait aussi ! Les jeux vidéos étant une sour
 st.write("Mais est-ce qu'un jeu vidéo qui a très bien fonctionner va aussi fonctionner dans le monde du cinéma ? Ceci est notre problèmatique pour cette analyse de donnée.")
 
 
-video_game_film = pad.read_csv('h3-hitema/SemaineOctobre/video_game_films.csv')
+video_game_film = pad.read_csv('leadersheepy/h3-hitema/main/SemaineOctobre/video_game_films.csv')
