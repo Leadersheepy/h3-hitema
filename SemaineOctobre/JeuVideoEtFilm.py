@@ -6,7 +6,10 @@
 
 
 import streamlit as st
-
+import numpy as np
+import pandas as pad
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # In[6]:
 st.set_page_config(page_title="Jeu Vidéo et Film", page_icon=":tada:", layout="wide")
