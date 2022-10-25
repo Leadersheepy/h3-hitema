@@ -1,4 +1,6 @@
+streamlit
+pandas
 seaborn
 numpy
-pandas
-matplotlib.pyplot
+matplotlib
+streamlit-aggrid
