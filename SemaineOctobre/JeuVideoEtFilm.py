@@ -152,7 +152,6 @@ st.dataframe(melange_f)
 st.write("Nous obtenons donc un jeu de données sur l'univers des jeux vidéos ayant eu une adaptation au cinéma avec 1172 jeux repartient dans moins de 42 franchises avec 24 caractéristiques.")
 st.write(" On peut déjà regarder sur un historigramme")
 
-st.title("Les genres les plus crée dans les jeux vidéos")
 
 # Nous obtenons donc un jeu de données sur l'univers des jeux vidéos ayant eu une adaptation au cinéma avec 1172 jeux repartient dans moins de 42 franchises avec 24 caractéristiques.
 
@@ -164,19 +163,51 @@ st.title("Les genres les plus crée dans les jeux vidéos")
 
 
 #plt.figure(figsize= (15,8))
-sns.histplot(x='Genre', data = melange_f, hue="Genre",shrink=0.8)
+#sns.histplot(x='Genre', data = melange_f, hue="Genre",shrink=0.8)
 
-chart_data = sns.histplot(x='Genre', data = melange_f, hue="Genre",shrink=0.8)
+#penguins = sns.load_dataset("melange_f")
+fig = plt.figure(figsize=(15,8))
 
-st.bar_chart(chart_data)
-
+sns.histplot(
+    data=melange_f,
+    x="Genre",
+    hue ="Genre",
+    shrink=0.8
+)
+plt.title("Les genre les plus crées dans les jeux vidéos")
+st.pyplot(fig)
 # ### Graphique vente jeux vidéos par année
 
 # In[14]:
 
 
-sns.lineplot(data=melange_f, y='Global_Sales',x="Year_of_Release")
 
+
+#sns.lineplot(data=melange_f, y='Global_Sales',x="Year_of_Release")
+st.info('Appuyez sur le bouton pour retirer les valeurs incohérentes', icon="ℹ️")
+
+if st.button('Adieu !'):
+    fig2 = plt.figure(figsize=(12,8))
+
+    sns.lineplot(
+        data=melange_f[melange_f['Year_of_Release'] > 1986],
+        x="Year_of_Release",
+        y ="Global_Sales"
+    )
+    plt.title("Vente des jeux vidéos par année")
+    st.pyplot(fig2)
+else:
+    fig2 = plt.figure(figsize=(12,8))
+
+    sns.lineplot(
+        data=melange_f,
+        x="Year_of_Release",
+        y ="Global_Sales"
+    )
+    plt.title("Vente des jeux vidéos par année")
+    st.pyplot(fig2) 
+
+    
 
 # In[15]:
 
@@ -187,7 +218,7 @@ sns.lineplot(data=melange_f, y='Global_Sales',x="Year_of_Release")
 # In[16]:
 
 
-melange_f[melange_f['Global_Sales'] > 5].head()
+#melange_f[melange_f['Global_Sales'] > 5].head()
 
 
 # In[17]:
@@ -213,36 +244,76 @@ melange_f[melange_f['Global_Sales'] > 5].head()
 # ### Graphique échantillon box office des films
 
 # In[35]:
+fig3 = plt.figure(figsize=(15,8))
+fig33 = plt.xticks(rotation=90)
 
 
 sns.lineplot(
-    x="Surnom", y="Worldwide_box_office_tri", 
-    data=melange_f.sample(n=50))
-plt.xticks(rotation=90)
+    data=melange_f.sample(n=50),
+    x="Surnom",
+    y="Worldwide_box_office_tri",
+)
+plt.title("Graphique échantillon box office des films")
+st.pyplot(fig3,fig33)
+
+# sns.lineplot(
+#   x="Surnom", y="Worldwide_box_office_tri", 
+#   data=melange_f.sample(n=50))
+#plt.xticks(rotation=90)
 
 
 # #### Global sales par rapport au jeux vidéos
 
 # In[20]:
 
+st.info('Appuyez sur le bouton pour retirer les valeurs incohérentes', icon="ℹ️")
 
-plt.figure(figsize= (15,8))
-sns.barplot(
-    y='Global_Sales',x='Surnom',
-     data = melange_f)
-plt.xticks(rotation=90)
+if st.button('Pouf !'):
+    fig4 = plt.figure(figsize=(15,8))
+    fig44 = plt.xticks(rotation=90)
 
+    sns.barplot(
+        data=melange_f.query("5 < Global_Sales"),
+        x="Surnom",
+        y="Global_Sales",
+    )
+    st.pyplot(fig4,fig44)
+else:
+    fig4 = plt.figure(figsize=(15,8))
+    fig44 = plt.xticks(rotation=90)
+
+    sns.barplot(
+        data=melange_f,
+        x="Surnom",
+        y="Global_Sales",
+    )
+    plt.title("Gloal sales par rapport aux jeux vidéos")
+    st.pyplot(fig4,fig44)
+
+
+
+
+
+
+#plt.figure(figsize= (15,8))
+#sns.barplot(
+#    y='Global_Sales',x='Surnom',
+#     data = melange_f)
+#plt.xticks(rotation=90)
+ 
 
 # #### Graphique supérieur global sales et les jeux
 
 # In[21]:
 
 
-plt.figure(figsize= (15,8))
-sns.barplot(
-    y='Global_Sales',x='Surnom',
-     data = melange_f.query("5 < Global_Sales"))
-plt.xticks(rotation=90)
+
+
+#plt.figure(figsize= (15,8))
+#sns.barplot(
+#    y='Global_Sales',x='Surnom',
+#     data = melange_f.query("5 < Global_Sales"))
+#plt.xticks(rotation=90)
 
 
 # #### Graphique des genres les plus vendu au cinéma
