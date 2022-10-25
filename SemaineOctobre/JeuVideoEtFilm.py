@@ -21,7 +21,7 @@ st.write("Toutefois, l'inverse existait aussi ! Les jeux vidéos étant une sour
 st.write("Mais est-ce qu'un jeu vidéo qui a très bien fonctionner va aussi fonctionner dans le monde du cinéma ? Ceci est notre problèmatique pour cette analyse de donnée.")
 
 
-video_game_film = pad.read_csv('video_game_films.csv')
+video_game_film = pad.read_csv(open('video_game_films.csv'))
 video_game = pad.read_csv('Video_Games_Sales_as_at_22_Dec_2016.csv')
 
 st.write("Pour notre analyse de données, nous allons utiliser deux csv, l'un regroupe les jeux vidéos adaptés en film, tandis que l'autre la vente des jeux vidéos jusqu'en 2016.")
@@ -59,6 +59,7 @@ st.write("Worldwide box office et Global_Sales sont des valeurs que nous allons 
 st.title("Importation 2")
 
 video_game_film_m = pad.read_csv('video_game_films_modifie.csv')
+
 video_game_m = pad.read_csv('Video_Games_Sales_modifie.csv')
 
 st.write("video_game_film_m")
