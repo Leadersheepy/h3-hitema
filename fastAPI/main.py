@@ -3,7 +3,6 @@ import uvicorn
 #from typing import Optional
 from enum import Enum
 from typing import Union
-
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -31,11 +30,11 @@ async def get_model(model_name: ModelName):
     return {"model_name": model_name, "message": "Have some residuals"}
 
 
-@app.get("/items/{item_id}")
-async def read_item(item_id: str, q: Union[str, None] = None):
-    if q:
-        return {"item_id": item_id, "m": m}
-    return {"item_id": item_id}
+#@app.get("/items/{item_id}")
+#async def read_item(item_id: str, q: Union[str, None] = None):
+#    if q:
+#        return {"item_id": item_id, "m": m}
+#    return {"item_id": item_id}
  #Union et none vont permettre de rendre le contenu optionel
  
 @app.get("/testboo/{testboo_id}")
@@ -76,6 +75,8 @@ async def lisons_les_deux(
             {"description": "This is an amazing item that has a long description"}
         )
     return etdedeux
+
+# item_id: str, needy: str, skip: int = 0, limit: Union[int, None] = None
 
 
 # class Coord(BaseModel):
@@ -118,3 +119,15 @@ async def lisons_les_deux(
 
 #if __name__ == "__main__":
 #   uvicorn.run(app, host="127.0.0.1", port=8000)
+
+
+
+class Item(BaseModel):
+    name: str
+    description: Union[str, None] = None
+    price: float
+    tax: Union[float, None] = None
+    
+@app.post("/items/")
+async def create_item(item: Item):
+    return item
