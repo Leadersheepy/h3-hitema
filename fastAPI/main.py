@@ -12,7 +12,7 @@ from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
-app.mount("/fastAPI", StaticFiles(directory="fastAPI"), name="fastAPI")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 #@app.get("/")
 #async def root():
