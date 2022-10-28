@@ -4,6 +4,8 @@ import uvicorn
 from enum import Enum
 from typing import Union
 from pydantic import BaseModel
+from fastapi.templating import Jinja2Templates
+
 
 app = FastAPI()
 
@@ -11,6 +13,14 @@ app = FastAPI()
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+templates = Jinja2Templates(directory="templates")
+
+
+@app.get("/items/{id}", response_class=HTMLResponse)
+async def read_item(request: Request, id: str):
+    return templates.TemplateResponse("item.html", {"request": request, "id": id})
+
 
 
 class ModelName(str, Enum):
@@ -122,12 +132,12 @@ async def lisons_les_deux(
 
 
 
-class Item(BaseModel):
-    name: str
-    description: Union[str, None] = None
-    price: float
-    tax: Union[float, None] = None
+#class Item(BaseModel):
+#    name: str
+#    description: Union[str, None] = None
+#    price: float
+#    tax: Union[float, None] = None
     
-@app.post("/items/")
-async def create_item(item: Item):
-    return item
+#@app.post("/items/")
+#async def create_item(item: Item):
+#    return item
