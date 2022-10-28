@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from urllib3 import HTTPResponse
 import uvicorn
 #from typing import Optional
 from enum import Enum
@@ -16,28 +17,27 @@ async def root():
 
 templates = Jinja2Templates(directory="templates")
 
-
-@app.get("/items/{id}", response_class=HTMLResponse)
+@app.get("/items/{id}", response_class=HTTPResponse)
 async def read_item(request: Request, id: str):
     return templates.TemplateResponse("item.html", {"request": request, "id": id})
 
 
 
-class ModelName(str, Enum):
-    marinet = "marinet"
-    resnet = "resnet"
-    lenet = "lenet"
+#class ModelName(str, Enum):
+#    marinet = "marinet"
+#    resnet = "resnet"
+#    lenet = "lenet"
 
 
-@app.get("/models/{model_name}")
-async def get_model(model_name: ModelName):
-    if model_name is ModelName.marinet:
-        return {"model_name": model_name, "message": "Bloup bloup bloup"}
-
-    if model_name.value == "lenet":
-        return {"model_name": model_name, "message": "LeCNN all the images"}
-
-    return {"model_name": model_name, "message": "Have some residuals"}
+#@app.get("/models/{model_name}")
+#async def get_model(model_name: ModelName):
+#    if model_name is ModelName.marinet:
+#        return {"model_name": model_name, "message": "Bloup bloup bloup"}#
+#
+#    if model_name.value == "lenet":
+#        return {"model_name": model_name, "message": "LeCNN all the images"}
+#
+#    return {"model_name": model_name, "message": "Have some residuals"}
 
 
 #@app.get("/items/{item_id}")
@@ -47,16 +47,16 @@ async def get_model(model_name: ModelName):
 #    return {"item_id": item_id}
  #Union et none vont permettre de rendre le contenu optionel
  
-@app.get("/testboo/{testboo_id}")
-async def read_item(testboo_id: str, m: Union[str, None] = None, short: bool = False):
-    testboo = {"testboo_id": testboo_id}
-    if m:
-        testboo.update({"m": m})
-    if not short:
-        testboo.update(
-            {"description": "Cette description est très dense ..."}
-        )
-    return testboo
+#@app.get("/testboo/{testboo_id}")
+#async def read_item(testboo_id: str, m: Union[str, None] = None, short: bool = False):
+#    testboo = {"testboo_id": testboo_id}
+#    if m:
+#        testboo.update({"m": m})
+#    if not short:
+#        testboo.update(
+#            {"description": "Cette description est très dense ..."}
+#        )
+#    return testboo
 #avec le booléen
 
 #######################
@@ -73,18 +73,18 @@ async def read_item(testboo_id: str, m: Union[str, None] = None, short: bool = F
 
 #######################
 
-@app.get("/etdeun/{etdeun_id}/etdedeux/{etdedeux_id}")
-async def lisons_les_deux(
-    etdeun_id: int, etdedeux_id: str, q: Union[str, None] = None, short: bool = False
-):
-    etdedeux = {"etdedeux_id": etdedeux_id, "owner_id": etdeun_id}
-    if q:
-        etdedeux.update({"q": q})
-    if not short:
-        etdedeux.update(
-            {"description": "This is an amazing item that has a long description"}
-        )
-    return etdedeux
+#@app.get("/etdeun/{etdeun_id}/etdedeux/{etdedeux_id}")
+#async def lisons_les_deux(
+#    etdeun_id: int, etdedeux_id: str, q: Union[str, None] = None, short: bool = False
+#):
+#    etdedeux = {"etdedeux_id": etdedeux_id, "owner_id": etdeun_id}
+#    if q:
+#        etdedeux.update({"q": q})
+#    if not short:
+#        etdedeux.update(
+#            {"description": "This is an amazing item that has a long description"}
+#        )
+#    return etdedeux
 
 # item_id: str, needy: str, skip: int = 0, limit: Union[int, None] = None
 
