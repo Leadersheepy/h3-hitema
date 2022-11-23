@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+label{
+  margin-right: 10px;
+}
+
+.cadre{
+  background-color: palevioletred;
+}
+
+.jourCadre{
+  background-color: rgb(105, 43, 53);
+
+}
+
+.pre-date{
+  opacity: 0.5;
+}
+
+.post-date{
+  opacity: 0.5;
+}
+
+
+.days div{
+  text-shadow: 0 0.3rem 0.5rem rgb(105, 43, 53);
+}
+.effet-de-passage{
+  margin: 2px;
+  transition: background-color 0.2s;
+}
+.effet-de-passage:hover:not(.aujourdhui){
+  background-color: #282c34;
+  cursor: pointer;
+  border: solid #777;
+}
+.aujourdhui{
+  background-color: palevioletred;
+}
