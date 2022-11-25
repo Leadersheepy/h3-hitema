@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
-
-/* import { useNavigate } from "react-router-dom";
-import { useSearchParams } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
- */
+
+import { useNavigate } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
+
 
 function PageRendezVous() {
 
-/*     let navigate = useNavigate();
+    let navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
   
     useEffect(() => {
     navigate("/");
     },[]);
- */
+
   return (
     <form >
       <div>

@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+label{
+  margin: 10px 20px 10px 20px;
+}
+
+.container{
+  background-color: palevioletred;
+}
+
+.containerDeux{
+  background-color: rgb(114, 77, 89);
+}
+
+.mois-precedent {
+  opacity: 0.5;
+}
+
+.prochain-mois {
+  opacity: 0.5;
+}
+
+.effet-de-passage{
+  text-shadow: 0 0.3rem 0.5rem rgb(105, 43, 53);
+  margin: 2px;
+  transition: background-color 0.2s;
+}
+.effet-de-passage:hover:not(.aujourdhui){
+  background-color: #282c34;
+  cursor: pointer;
+  border: solid #777;
+}
+.aujourdhui{
+  background-color: palevioletred;
+}

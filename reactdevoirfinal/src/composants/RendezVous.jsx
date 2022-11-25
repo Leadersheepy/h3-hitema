@@ -1,10 +1,10 @@
 import Calendrier from "./Calendrier";
 import PageRendezVous from './PageRendezVous';
 import React, { useEffect } from "react";
-/* import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
- */
+
 const RendezVous = () => {
 
     return ( 

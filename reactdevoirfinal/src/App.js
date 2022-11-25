@@ -3,8 +3,8 @@ import './App.css';
 import Calendrier from './composants/Calendrier'
 import RendezVous from './composants/RendezVous';
 import PageRendezVous from './composants/PageRendezVous';
-/* import { Route, Routes } from 'react-router-dom';
- */
+import { Route, Routes } from 'react-router-dom';
+
 function App() {
   return (
     <div className="App">
