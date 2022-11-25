@@ -38,31 +38,27 @@
 }
 
 label{
-  margin-right: 10px;
+  margin: 10px 20px 10px 20px;
 }
 
-.cadre{
+.container{
   background-color: palevioletred;
 }
 
-.jourCadre{
-  background-color: rgb(105, 43, 53);
-
+.containerDeux{
+  background-color: rgb(114, 77, 89);
 }
 
-.pre-date{
+.mois-precedent {
   opacity: 0.5;
 }
 
-.post-date{
+.prochain-mois {
   opacity: 0.5;
 }
 
-
-.days div{
-  text-shadow: 0 0.3rem 0.5rem rgb(105, 43, 53);
-}
 .effet-de-passage{
+  text-shadow: 0 0.3rem 0.5rem rgb(105, 43, 53);
   margin: 2px;
   transition: background-color 0.2s;
 }

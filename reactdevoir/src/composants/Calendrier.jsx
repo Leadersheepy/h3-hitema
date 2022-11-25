@@ -1,27 +1,42 @@
-const Jours = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche",]
+import EnTeteCalendrier from "./EnTeteCalendrier";
+import React, {useState, useEffect} from "react";
+import CorpsCalendrier from "./CorpsCalendrier";
 
-const Calendrier = () => {
+
+function Calendrier() {
+    const [annee, setAnnee] = useState();
+    const [mois, setMois] = useState();
+
+    const d = new Date();
+
+    function mod(n, m) {
+        return ((n % m) + m ) % m;
+    }
+
+    function changementDeMois(increment) {
+        setMois(mod(mois + increment, 12));
+      }
+    
+      function changementAnnee(increment) {
+        setAnnee(annee + increment);
+      }
+
+      
+    useEffect(() => {
+        setAnnee(d.getFullYear());
+        setMois(d.getMonth());
+      }, []);
 
     return ( 
     <div className="m-[400px] border">
-        <div className="grid grid-cols-7 items-center justify-center text-center">
+        <div className="containerDeux grid grid-cols-7 items-center justify-center text-center">
             <h1>Calendar</h1>
-
-            <div className="col cadre">
-                <label>{"<<"}</label>
-                <label>Mai</label>
-                <label>{">>"}</label>
-            </div>
-
-            <div className="col cadre">
-                <label>{"<<"}</label>
-                <label>2020</label>
-                <label>{">>"}</label>
-            </div>
-
-            <div className="jourCadre">{Jours.map(jour => (<label>{jour}</label>))}</div>
+            
+            <EnTeteCalendrier mois={mois} annee={annee} changementDeMois={changementDeMois} changementAnnee={changementAnnee}/>
         
-            <div className="days">
+            <CorpsCalendrier annee={annee} mois={mois}/>
+
+           {/*  <div className="days">
                 <div className="row">
                     <label className="col effet-de-passage pre-date">27</label>
                     <label className="col effet-de-passage pre-date">28</label>
@@ -76,7 +91,7 @@ const Calendrier = () => {
                     <label className="col effet-de-passage post-date">6</label>
                     <label className="col effet-de-passage post-date">7</label>
                 </div>       
-            </div>
+            </div> */}
 
         </div>
     </div> );
