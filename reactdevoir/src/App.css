@@ -70,10 +70,3 @@ label{
 .aujourdhui{
   background-color: palevioletred;
 }
-
-.jolieBouton{
-  border-radius: 40px;
-  color: #fff;
-  text-decoration: none;
-  background: linear-gradient(90deg,#ca2c6e,#c940b2);
-}
