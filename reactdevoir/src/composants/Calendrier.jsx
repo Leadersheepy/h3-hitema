@@ -1,100 +1,70 @@
-import EnTeteCalendrier from "./EnTeteCalendrier";
-import React, {useState, useEffect} from "react";
-import CorpsCalendrier from "./CorpsCalendrier";
+import React from 'react';
+import { useState, useEffect } from 'react';
 
 
-function Calendrier() {
-    const [annee, setAnnee] = useState();
-    const [mois, setMois] = useState();
+export function Calendrier() {
+  const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
-    const d = new Date();
+  const today = new Date();
+  const [date, setDate] = useState(today);
+  const [day, setDay] = useState(date.getDate());
+  const [month, setMonth] = useState(date.getMonth());
+  const [year, setYear] = useState(date.getFullYear());
+  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
 
-    function mod(n, m) {
-        return ((n % m) + m ) % m;
-    }
+  useEffect(() => {
+    setDay(date.getDate());
+    setMonth(date.getMonth());
+    setYear(date.getFullYear());
+    setStartDay(getStartDayOfMonth(date));
+  }, [date]);
 
-    function changementDeMois(increment) {
-        setMois(mod(mois + increment, 12));
-      }
-    
-      function changementAnnee(increment) {
-        setAnnee(annee + increment);
-      }
+  function getStartDayOfMonth(date= Date) {
+    const startDate = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+    return startDate === 0 ? 7 : startDate;
+  }
 
-      
-    useEffect(() => {
-        setAnnee(d.getFullYear());
-        setMois(d.getMonth());
-      }, []);
+  function isLeapYear(year= number) {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+  }
 
-    return ( 
-    <div className="m-[400px] border">
-        <div className="containerDeux grid grid-cols-7 items-center justify-center text-center">
-            <h1>Calendar</h1>
-            
-            <EnTeteCalendrier mois={mois} annee={annee} changementDeMois={changementDeMois} changementAnnee={changementAnnee}/>
-        
-            <CorpsCalendrier annee={annee} mois={mois}/>
+  const days = isLeapYear(year) ? DAYS_LEAP : DAYS;
 
-           {/*  <div className="days">
-                <div className="row">
-                    <label className="col effet-de-passage pre-date">27</label>
-                    <label className="col effet-de-passage pre-date">28</label>
-                    <label className="col effet-de-passage pre-date">29</label>
-                    <label className="col effet-de-passage pre-date">30</label>
-                    <label className="col effet-de-passage">1</label>
-                    <label className="col effet-de-passage">2</label>
-                    <label className="col effet-de-passage">3</label>
-                </div>
-                <div className="row">
-                    <label className="col effet-de-passage">4</label>
-                    <label className="col effet-de-passage">5</label>
-                    <label className="col effet-de-passage">6</label>
-                    <label className="col effet-de-passage">7</label>
-                    <label className="col effet-de-passage">8</label>
-                    <label className="col effet-de-passage">9</label>
-                    <label className="col effet-de-passage">10</label>
-                </div>
-                <div className="row">
-                    <label className="col effet-de-passage">11</label>
-                    <label className="col effet-de-passage">12</label>
-                    <label className="col effet-de-passage">13</label>
-                    <label className="col effet-de-passage">14</label>
-                    <label className="col effet-de-passage">15</label>
-                    <label className="col effet-de-passage">16</label>
-                    <label className="col effet-de-passage">17</label>
-                </div>
-                <div className="row">
-                    <label className="col effet-de-passage">18</label>
-                    <label className="col effet-de-passage">19</label>
-                    <label className="col effet-de-passage">20</label>
-                    <label className="col effet-de-passage">21</label>
-                    <label className="col effet-de-passage">22</label>
-                    <label className="col effet-de-passage">23</label>
-                    <label className="col effet-de-passage">24</label>
-                </div>
-                <div className="row">
-                    <label className="col effet-de-passage">25</label>
-                    <label className="col effet-de-passage">26</label>
-                    <label className="col effet-de-passage">27</label>
-                    <label className="col effet-de-passage ">28</label>
-                    <label className="col effet-de-passage aujourdhui">29</label>
-                    <label className="col effet-de-passage">30</label>
-                    <label className="col effet-de-passage">31</label>
-                </div>    
-                <div className="row">
-                    <label className="col effet-de-passage post-date">1</label>
-                    <label className="col effet-de-passage post-date">2</label>
-                    <label className="col effet-de-passage post-date">3</label>
-                    <label className="col effet-de-passage post-date">4</label>
-                    <label className="col effet-de-passage post-date">5</label>
-                    <label className="col effet-de-passage post-date">6</label>
-                    <label className="col effet-de-passage post-date">7</label>
-                </div>       
-            </div> */}
-
+  return (
+    <Frame>
+      <Header>
+        <Button onClick={() => setDate(new Date(year, month - 1, day))}>Prev</Button>
+        <div>
+          {MONTHS[month]} {year}
         </div>
-    </div> );
+        <Button onClick={() => setDate(new Date(year, month + 1, day))}>Next</Button>
+      </Header>
+      <Body>
+        {DAYS_OF_THE_WEEK.map((d) => (
+          <Day key={d}>
+            <strong>{d}</strong>
+          </Day>
+        ))}
+        {Array(days[month] + (startDay - 1))
+          .fill(null)
+          .map((_, index) => {
+            const d = index - (startDay - 2);
+            return (
+              <Day
+                key={index}
+                isToday={d === today.getDate()}
+                isSelected={d === day}
+                onClick={() => setDate(new Date(year, month, d))}
+              >
+                {d > 0 ? d : ''}
+              </Day>
+            );
+          })}
+      </Body>
+    </Frame>
+  );
 }
- 
 export default Calendrier;
