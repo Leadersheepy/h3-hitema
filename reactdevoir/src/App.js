@@ -5,6 +5,7 @@ import RendezVous from './composants/RendezVous';
 import PageRendezVous from './composants/PageRendezVous';
 /* import { Route, Routes } from 'react-router-dom';
  */
+
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
       </header>
       <main className='App-header'>
         <Calendrier />
+        <RendezVous />
       </main>
     </div>
   );
