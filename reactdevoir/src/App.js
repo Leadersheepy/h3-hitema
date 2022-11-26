@@ -15,7 +15,7 @@ function App() {
       </header>
       <main className='App-header'>
       <Routes>
-        <Route exact path="/" element={<Calendrier />} />
+        <Route exact path="/" element={<RendezVous />} />
         <Route exact path="/meet_form" element={<PageRendezVous />} />
       </Routes>
       </main>

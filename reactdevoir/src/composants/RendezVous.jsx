@@ -9,7 +9,7 @@ function RendezVous () {
         <div>
             <Calendrier/>
             
-            <button className="jolieBouton" href="/meet_form">Nouveau rendez-vous</button>
+            <button className="jolieBouton"><a href="/meet_form">Nouveau rendez-vous</a></button>
         </div>
      );
 }

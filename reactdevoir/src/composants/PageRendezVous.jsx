@@ -6,9 +6,6 @@ import { useSearchParams } from 'react-router-dom';
 function PageRendezVous() {
   let navigate = useNavigate();
 
-  useEffect(() => {
-    navigate("/");
-  }, []);
 
   return (
     <form >
@@ -25,7 +22,7 @@ function PageRendezVous() {
         <input type="date" name="date" id="date" required />
       </div>
       <div>
-        <input type="submit" value="Prendre rendez-vous" />
+        <input type="submit" />
       </div>
     </form>
   );
