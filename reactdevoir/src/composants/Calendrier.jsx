@@ -1,6 +1,7 @@
 import EnTeteCalendrier from "./EnTeteCalendrier";
 import React, {useState, useEffect} from "react";
 import CorpsCalendrier from "./CorpsCalendrier";
+import RendezVous from "./RendezVous";
 
 
 function Calendrier() {

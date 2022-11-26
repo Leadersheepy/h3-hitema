@@ -3,8 +3,8 @@ import './App.css';
 import Calendrier from './composants/Calendrier'
 import RendezVous from './composants/RendezVous';
 import PageRendezVous from './composants/PageRendezVous';
-/* import { Route, Routes } from 'react-router-dom';
- */
+import { Route, Routes } from 'react-router-dom';
+ 
 
 function App() {
   return (
@@ -14,8 +14,10 @@ function App() {
         <h1> Devoir reactjs </h1>
       </header>
       <main className='App-header'>
-        <Calendrier />
-        <RendezVous />
+      <Routes>
+        <Route exact path="/" element={<Calendrier />} />
+        <Route exact path="/meet_form" element={<PageRendezVous />} />
+      </Routes>
       </main>
     </div>
   );
