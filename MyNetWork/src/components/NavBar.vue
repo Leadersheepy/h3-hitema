@@ -1,8 +1,11 @@
 <template>
-    <h1 class="title">MyNetWork</h1>
+    <header>
+        <h1 class="title">MyNetWork <img class="petitLogo" src="../assets/logo.png"> </h1>
     <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-        <router-link to="/contact">Contact</router-link>
+        <router-link to="/">Fils d'actualité</router-link>
+        <router-link to="/creerprofil">Créer un profil</router-link>
+        <router-link to="/connecter">Se connecter</router-link>
     </nav>
+    </header>
+
 </template>
