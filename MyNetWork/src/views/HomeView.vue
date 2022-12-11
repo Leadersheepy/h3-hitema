@@ -7,7 +7,8 @@
         <h3>Quoi de neuf ?</h3>
       </div>
       <textarea id="content" name="content" placeholder="laisser un nouveau post">
-      </textarea>             
+      </textarea>     
+      <input placeholder="url de votre image">        
       <div class="post-box-footer">
         <button>Laisser un nouveau post</button>
       </div>
@@ -53,7 +54,17 @@
             </div>
             <p class="comment-content">{{commentaire.contenu}}</p>
         </div>
-    </div>
+
+        <div  v-if="isLogged">
+        <h3 class="commentaire"> Ajouter un commentaire : </h3>
+          <textarea id="content" name="content" placeholder="laisser un nouveau commentaire"></textarea>     
+          <div class="post-box-footer">
+            <button>Laisser un commentaire</button>
+          </div>
+        </div>
+
+      </div>
+
  </template>
 
     
