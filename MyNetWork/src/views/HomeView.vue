@@ -3,12 +3,10 @@
 
     <div id="wrapper">
         
-        <header class="cf">
-            <a href=#><img class='profile-pic' src="https://via.placeholder.com/150"></a>
-            <h1 class="name">
-                <a href="#">Tesla</a>
-            </h1>
-            <p class="date">2 hr ago</p>
+        <header class="headerPost">
+                <h1 class="name"> Tesla </h1>
+                <img class='profile-pic' src="https://via.placeholder.com/150">
+                <p class="date">posté le 28/03/2021 à 05h54</p>
         </header>
         
         <p class="status">Tesla drivers just passed 3 billion electric miles, saving the world 120M gallons of gas 👍</p>
