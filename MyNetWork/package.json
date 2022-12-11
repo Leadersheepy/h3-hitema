@@ -16,6 +16,7 @@
     "json-server": "^0.17.1",
     "pinia": "^2.0.26",
     "vue": "^3.2.45",
+    "vue-cookies": "^1.8.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

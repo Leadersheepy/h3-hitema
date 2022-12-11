@@ -2,7 +2,7 @@
 <template>
 
   
-    <div class="post-box" v-if="isLogged">
+    <div class="post-box" v-if="userStore.user.isLogged">
       <div class="post-box-header">
         <h3>Quoi de neuf ?</h3>
       </div>
@@ -55,7 +55,7 @@
             <p class="comment-content">{{commentaire.contenu}}</p>
         </div>
 
-        <div  v-if="isLogged">
+        <div  v-if="userStore.user.isLogged">
         <h3 class="commentaire"> Ajouter un commentaire : </h3>
           <textarea id="content" name="content" placeholder="laisser un nouveau commentaire"></textarea>     
           <div class="post-box-footer">
@@ -86,8 +86,7 @@ function incrementCounter(){
 }
 
 onMounted(() => {
-  const userEmail = userStore.user.email
-  const loggedIn = userStore.user.isLogged
+  userStore.get_cookie();
 
   fetch("http://localhost:3000/articles")
       .then(response => response.json())
@@ -96,11 +95,6 @@ onMounted(() => {
   fetch("http://localhost:3000/utilisateurs")
       .then(response => response.json())
       .then(data => utilisateurs.value = data)
-      .then(data => {
-        console.log(data.filter(function (val) {
-          return val.pseudo === "Alain"
-        })[0])
-      })
 })
 
 </script>

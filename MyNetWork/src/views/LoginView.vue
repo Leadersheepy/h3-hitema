@@ -1,42 +1,49 @@
 <template>
-    
-    <form @submit.prevent="submit($event)" class="login-form">
-        <h1 class="login-title">Se connecter</h1>
 
-        <input v-model="email" placeholder="votre@emailfr" type="text" id="username" class="login-input">
+  <form @submit.prevent="submit($event)" class="login-form">
+    <h1 class="login-title">Se connecter</h1>
 
-        <div class="espacement"></div>
+    <input v-model="email" placeholder="votre@emailfr" type="text" id="username" class="login-input">
 
-        <input type="password"  v-model="password" placeholder="password" id="password" class="login-input">
+    <div class="espacement"></div>
 
-        <div class="espacement"></div>
+    <input type="password" v-model="password" placeholder="password" id="password" class="login-input">
 
-        <button type="submit"  value="Se connecter" class="login-button">connexion</button>
-    </form>
-  
-  </template>
-  
-  <script lang="ts">
-  import {useUserStore} from "@/stores/userStore"
-  import router from "@/router";
-  
-  export default {
-    methods: {
-      submit: function () {
-        const identifiants = {email: this.email, password: this.password}
-        this.userStore.login(identifiants);
-        router.push("/")
-      }
-    },
-    data : () => {
-      return {
-        email : "",
-        password : "",
-        userStore : useUserStore()
-      }
+    <div class="espacement"></div>
+
+    <button type="submit" value="Se connecter" class="login-button">connexion</button>
+  </form>
+
+</template>
+
+<script lang="ts">
+import {useUserStore} from "@/stores/userStore"
+import router from "@/router";
+import {onMounted} from "vue";
+
+let userStore;
+
+export default {
+  mounted() {
+    userStore = useUserStore()
+    userStore.get_cookie()
+
+    if (userStore.user.isLogged)
+      router.push('/')
+  },
+  methods: {
+    submit: function () {
+      const identifiants = {email: this.email, password: this.password}
+      userStore.login(identifiants)
+      router.push("/")
+    }
+  },
+  data: () => {
+    return {
+      email: "",
+      password: "",
+      userStore: userStore
     }
   }
-  </script>
-
-
- 
+}
+</script>
