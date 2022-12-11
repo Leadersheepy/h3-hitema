@@ -1,6 +1,19 @@
 
 <template>
 
+  
+    <div class="post-box" v-if="isLogged">
+      <div class="post-box-header">
+        <h3>Quoi de neuf ?</h3>
+      </div>
+      <textarea id="content" name="content" placeholder="laisser un nouveau post">
+      </textarea>             
+      <div class="post-box-footer">
+        <button>Laisser un nouveau post</button>
+      </div>
+    </div>
+  
+
     <div id="wrapper" v-for="article in articles">
         
         <header class="headerPost">
