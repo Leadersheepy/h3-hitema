@@ -5,9 +5,8 @@
         
         <header class="headerPost">
                 <h1 class="name">{{ article.pseudo }}</h1>
-                <img class='profile-pic' :src="utilisateurs.filter(function(val) {
-        return val.pseudo === article.pseudo
-      })[0].urlImgProfil">
+                <img class='profile-pic' :src="utilisateurs.filter(function(val){
+                  return val.pseudo === article.pseudo } )[0].urlImgProfil">
                 <p class="date">posté le 28/03/2021 à 05h54</p>
         </header>
         
@@ -17,17 +16,17 @@
         <div class="action headerPost">
 
             <div class="commentary">
-                <a href="#">
+                <label href="#">
                     <img src="../assets/comment.png" />
                     <p>Counter</p>
-                </a>
+                </label>
             </div>
 
             <div class="like">
-                <a href="#">
+                <button @click="incrementCounter">
                     <img src="https://1.bp.blogspot.com/-qns_lZPjg0I/VWY2dO1HN-I/AAAAAAAACVA/akLTMY7RJSk/s1600/Thumbs-up-facebook-icon-small.png" alt="thumbs up" />
-                    <p>Counter</p> 
-                </a>
+                    <p>{{counter}}</p> 
+                </button>
             </div>
             
         </div>
@@ -45,6 +44,8 @@
     
     </template>
 
+    
+
 <script setup lang="ts">
 
 import {ref, onMounted} from "vue"
@@ -55,8 +56,15 @@ let userStore = useUserStore();
 let articles = ref([]);
 let utilisateurs = ref([]);
 
+let counter = 0;
+
+function incrementCounter(){
+  counter = counter + 1;
+}
+
 onMounted(() => {
   const userEmail = userStore.user.email
+  const loggedIn = userStore.user.isLogged
 
   fetch("http://localhost:3000/articles")
       .then(response => response.json())
@@ -71,41 +79,5 @@ onMounted(() => {
         })[0])
       })
 })
+
 </script>
-
-<style>
-  /* Style the comment using CSS */
-  .comment {
-    margin-top: 20px;
-    border: 1px solid rgb(207, 204, 204);
-    border-radius: 10px;
-  }
-
-  .comment-author {
-    display: flex;
-    align-items: center;
-  }
-
-  .comment-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-
-  .comment-name {
-    font-size: 18px;
-    margin-left: 10px;
-  }
-
-  .comment-date {
-    font-size: 14px;
-    color: #999;
-    margin-left: 10px;
-  }
-
-  .comment-content {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-top: 10px;
-  }
-</style>
