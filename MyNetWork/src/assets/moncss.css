@@ -101,7 +101,7 @@ nav {
   }
  
   .headerPost {
-    background-color: #d9dce1;
+    background-color: #e7e9ed;
   }
 
   .img-content {
@@ -112,19 +112,11 @@ nav {
    
   .action div {
     display: inline-block;
-  }
-  
-  .action div p:hover {
-    text-decoration: underline;
-  }
-  
-  .action div:nth-child(n + 2) {
     margin-left: 20px;
   }
   
   .like img,
-  .comment img,
-  .share img {
+  .commentary img{
     display: inline-block;
     width: 18px;
     vertical-align: text-bottom;
