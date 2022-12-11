@@ -1,16 +1,18 @@
 
 <template>
 
-    <div id="wrapper">
+    <div id="wrapper" v-for="article in articles">
         
         <header class="headerPost">
-                <h1 class="name"> Tesla </h1>
-                <img class='profile-pic' src="https://via.placeholder.com/150">
+                <h1 class="name">{{ article.pseudo }}</h1>
+                <img class='profile-pic' :src="utilisateurs.filter(function(val) {
+        return val.pseudo === article.pseudo
+      })[0].urlImgProfil">
                 <p class="date">posté le 28/03/2021 à 05h54</p>
         </header>
         
-        <p class="status">Tesla drivers just passed 3 billion electric miles, saving the world 120M gallons of gas 👍</p>
-        <img class="img-content" src="https://via.placeholder.com/350x150" />
+        <p class="status">{{ article.contenu }}</p>
+        <img class="img-content" :src="article.urlImgArticle" />
         
         <div class="action headerPost">
 
@@ -43,6 +45,33 @@
     
     </template>
 
+<script setup lang="ts">
+
+import {ref, onMounted} from "vue"
+import {useUserStore} from "../stores/userStore"
+
+let userStore = useUserStore();
+
+let articles = ref([]);
+let utilisateurs = ref([]);
+
+onMounted(() => {
+  const userEmail = userStore.user.email
+
+  fetch("http://localhost:3000/articles")
+      .then(response => response.json())
+      .then(data => articles.value = data)
+
+  fetch("http://localhost:3000/utilisateurs")
+      .then(response => response.json())
+      .then(data => utilisateurs.value = data)
+      .then(data => {
+        console.log(data.filter(function (val) {
+          return val.pseudo === "Alain"
+        })[0])
+      })
+})
+</script>
 
 <style>
   /* Style the comment using CSS */
