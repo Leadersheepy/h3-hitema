@@ -25,7 +25,7 @@
       submit: function () {
         const identifiants = {email: this.email, password: this.password}
         this.userStore.login(identifiants);
-        router.push("/")
+        router.push("home")
       }
     },
     data : () => {

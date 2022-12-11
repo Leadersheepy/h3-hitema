@@ -7,7 +7,7 @@
                 <h1 class="name">{{ article.pseudo }}</h1>
                 <img class='profile-pic' :src="utilisateurs.filter(function(val){
                   return val.pseudo === article.pseudo } )[0].urlImgProfil">
-                <p class="date">posté le 28/03/2021 à 05h54</p>
+                <p class="date">posté le {{article.date}}</p>
         </header>
         
         <p class="status">{{ article.contenu }}</p>
@@ -18,31 +18,30 @@
             <div class="commentary">
                 <label href="#">
                     <img src="../assets/comment.png" />
-                    <p>Counter</p>
+                    <p>{{ article.id}}</p>
                 </label>
             </div>
 
             <div class="like">
                 <button @click="incrementCounter">
                     <img src="https://1.bp.blogspot.com/-qns_lZPjg0I/VWY2dO1HN-I/AAAAAAAACVA/akLTMY7RJSk/s1600/Thumbs-up-facebook-icon-small.png" alt="thumbs up" />
-                    <p>{{counter}}</p> 
+                    <p>{{ article.like }}</p> 
                 </button>
             </div>
             
         </div>
 
         <h3 class="commentaire"> Commentaires : </h3>
-        
-        <div class="comment">
+
+        <div class="comment" v-for="commentaire in article.commentaires">
             <div class="comment-author">
-                <h3 class="comment-name">John Doe</h3>
-                <p class="comment-date">December 11, 2022</p>
+                <h3 class="comment-name">{{commentaire.pseudo}}</h3>
+                <p class="comment-date">{{commentaire.dt}}</p>
             </div>
-            <p class="comment-content">This is a comment on the post.</p>
+            <p class="comment-content">{{commentaire.contenu}}</p>
         </div>
     </div>
-    
-    </template>
+ </template>
 
     
 
