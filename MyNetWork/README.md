@@ -1,6 +1,14 @@
 # MyNetWork
 
-This template should help get you started developing with Vue 3 in Vite.
+## Voici mon devoir de NetWork
+## Je n'ai pas pu hélas le finir à temps, toutefois je vais essayer de le finir Lundi !!!
+## Passez une bonne semaine,
+## Cordialement,
+# Marine
+
+
+
+
 
 ## Recommended IDE Setup
 
