@@ -13,9 +13,22 @@ export const useUserStore = defineStore("userStore", {
         }
     },
     actions: {
-        add: async function (identifiant) {
+        add: function (identifiants) {
+            fetch(`http://localhost:3000/utilisateurs`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(identifiants)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.user.isLogged = true;
+                    this.user.pseudo = data[0]['pseudo']
+                    this.user.email = data[0]['email']
+                    this.user.urlImgProfil = data[0]['urlImgProfil']
+                    this.user.id = data[0]['id']
 
-            return {message: "ok"};
+                    this.set_cookies();
+                })
         },
         login: function (identifiants) {
             fetch(`http://localhost:3000/utilisateurs?email=${identifiants.email}&password=${identifiants.password}`)

@@ -4,7 +4,7 @@
       <h1 class="title">MyNetWork <img class="petitLogo" src="../assets/logo.png"></h1>
       <nav>
         <router-link to="/">Fils d'actualité</router-link>
-        <router-link to="/creation">Créer un profil {{userStore.user.isLogged}}</router-link>
+        <router-link to="/creation">Créer un profil</router-link>
         <router-link to="/identification" v-if="!userStore.user.isLogged">Se connecter</router-link>
         <router-link to="/" v-else @click="deconnection()">Se déconnecter</router-link>
       </nav>

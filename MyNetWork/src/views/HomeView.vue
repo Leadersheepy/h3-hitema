@@ -34,7 +34,7 @@
       </div>
 
       <div class="like">
-        <button @click="incrementCounter">
+        <button @click="incrementCounter(article.id, article.like)">
           <img
               src="https://1.bp.blogspot.com/-qns_lZPjg0I/VWY2dO1HN-I/AAAAAAAACVA/akLTMY7RJSk/s1600/Thumbs-up-facebook-icon-small.png"
               alt="thumbs up"/>
@@ -78,11 +78,21 @@ let isLogged = ref(false);
 let articles = ref([]);
 let utilisateurs = ref([]);
 
+function incrementCounter(id, counter) {
+  fetch(`http://localhost:3000/articles/${id}`, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      'like': counter + 1
+    })
+  }).then(response => response.json()).then(data => console.log(data))
+}
+
 onMounted(() => {
   userStore.value.get_cookies();
 
   isLogged.value = userStore.value.user.isLogged
-  
+
   fetch("http://localhost:3000/articles")
       .then(response => response.json())
       .then(data => articles.value = data)
