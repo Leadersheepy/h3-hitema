@@ -16,34 +16,20 @@
 
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+
 import {useUserStore} from "@/stores/userStore"
 import router from "@/router";
-import {onMounted} from "vue";
+import {ref, onMounted} from "vue";
 
-let userStore;
+let userStore = ref(useUserStore());
+let email = ref('');
+let password = ref('');
 
-export default {
-  mounted() {
-    userStore = useUserStore()
-    userStore.get_cookie()
-
-    if (userStore.user.isLogged)
-      router.push('/')
-  },
-  methods: {
-    submit: function () {
-      const identifiants = {email: this.email, password: this.password}
-      userStore.login(identifiants)
-      router.push("/")
-    }
-  },
-  data: () => {
-    return {
-      email: "",
-      password: "",
-      userStore: userStore
-    }
-  }
+function submit() {
+  const identifiants = {email: email.value, password: password.value}
+  userStore.value.login(identifiants)
+  router.push("/")
 }
+
 </script>
