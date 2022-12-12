@@ -1,7 +1,7 @@
 # MyNetWork
 
 ## Voici mon devoir de NetWork
-## Je n'ai pas pu hélas le finir à temps, toutefois je vais essayer de le finir Lundi !!!
+## Il y a deux trois élèments dans les consignes que je n'ai pas réussi à mettre dans mon code... (soit par manque de temps, soit ça ne fonctionnait pas donc j'ai préféré le retirer)
 ## Passez une bonne semaine,
 ## Cordialement,
 # Marine
